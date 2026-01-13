@@ -3,17 +3,26 @@ package adventure;
 import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.StdRandom;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 public class BeeCountingStage implements AdventureStage {
-    private static final int[] SOME_NEAT_NUMBERS = {5, 3, 2, 6, 7};
+    private static final int[] SOME_NEAT_NUMBERS = {5, 3, 2, 6, 7}; // 常量数组
 
-    private final In in;
-    private final Map<String, AdventureStage> responses;
+    private final In in; // 输入源
+    private final Map<String, AdventureStage> responses; // 映射表
     private List<String> input;
+    /*
+     private List<String> input;这一行代码做且仅做了三件事：
+     1. 声明一个变量(字段)
+     2. 说明类型为 List<String>
+     3. 规定private
+     */
 
     public BeeCountingStage(In in) {
+        // this.input没有初始化
+        this.input = new ArrayList<>() ;
         this.in = in;
         this.responses = Map.of("go", new SpeciesListStage(in));
     }
@@ -83,7 +92,7 @@ public class BeeCountingStage implements AdventureStage {
      */
     private int sumInput() {
         int sum = 0;
-        for (int i = 0; i <= this.input.size(); i++) {
+        for (int i = 0; i < this.input.size(); i++) {
             sum += Integer.parseInt(this.input.get(i));
         }
         return sum;

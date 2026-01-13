@@ -3,6 +3,7 @@ package adventure;
 import common.IntList;
 import edu.princeton.cs.algs4.In;
 
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -64,7 +65,8 @@ public class PalindromeStage implements AdventureStage {
     /** Returns a new IntList with the contents of the original IntList in reverse order.*/
     private static IntList reverseList(IntList l) {
         IntList reversed = null;
-        while (l.rest != null) {
+        // 链表要“看节点”，不是“看下一个节点”
+        while (l != null) {
             reversed = new IntList(l.first, reversed);
             l = l.rest;
         }
@@ -77,8 +79,8 @@ public class PalindromeStage implements AdventureStage {
      */
     private static IntList digitsToIntList(String s) {
         int[] a = new int[s.length()];
-        for (int i = s.length(); i > 0; i++) {
-            a[s.length() - i] = Character.getNumericValue(s.charAt(i));
+        for (int i = 0; i <= s.length() - 1; i++) {
+            a[i] = Character.getNumericValue(s.charAt(i));
         }
         return IntList.of(a);
     }
